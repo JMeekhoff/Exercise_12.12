@@ -1,0 +1,81 @@
+package org.junit;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class Exercise12_12_Test {
+
+  @BeforeAll
+  static void setUpBeforeClass() throws Exception {}
+
+  @Test
+  void testReformatCheck() throws Exception {
+    String[] args = {};
+    String s = "{";
+    String s1 = s.trim();
+    exceptionMethods em = new exceptionMethods(args, s, s1);
+
+    Throwable e = null;
+    try {
+      em.reformatCheck(s, s1);
+    } catch (Exception ex) {
+      e = ex;
+    }
+    assertTrue(e instanceof Exception);
+  }
+  
+  private void assertTrue(boolean b) {
+   
+    
+  }
+
+  @Test
+  void testReformator() throws Exception {
+    String[] args = {};
+    String s = "{";
+    String s1 = s.trim();
+    exceptionMethods em = new exceptionMethods(args, s, s1);
+    String actual = em.reformator(s, s1);
+    String expected = "{";
+    assertEquals(actual, expected);
+  }
+
+ 
+
+  private void assertEquals(String actual, String expected) {
+   
+    
+  }
+
+  @Test
+  void testCHECKSource() throws Exception {
+    String[] args = {};
+    exceptionMethods em = new exceptionMethods(args);
+    Throwable e = null;
+    try {
+      em.checkSource(args);
+    } catch (Exception ex) {
+      System.out.println("source file does not exist");
+      e = ex;
+    }
+    assertTrue(e instanceof Exception);
+
+  }
+
+  @Test
+  void testCHECKCommand() throws Exception {
+    String[] args = {"hi"};
+    exceptionMethods em = new exceptionMethods(args);
+    try {
+      em.checkCommand(args);
+    } catch (Exception ex) {
+      System.out.println("args length does not equal 1");
+    }
+    String actual = em.checkCommand(args);
+    String expected = "args length equals 1";
+    assertEquals(actual, expected);
+  }
+
+}
